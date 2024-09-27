@@ -1,3 +1,7 @@
 FROM python:3.11
 
-CMD echo “hello world”
+COPY ./requirements.txt .
+COPY ./entrypoint.py .
+
+RUN pip install -r requirements.txt
+CMD exec gunicorn entrypoint:app
